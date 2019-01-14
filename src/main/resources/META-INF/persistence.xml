@@ -4,7 +4,7 @@
 
     <!-- Define persistence unit -->
 
-    <persistence-unit name="my-persistence-unit">
+    <persistence-unit name="persistence-unit">
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect" />
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />

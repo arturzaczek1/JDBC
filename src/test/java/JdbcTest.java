@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-public class EmployeeDAOTest {
+public class JdbcTest {
 
     @Test
     public void testOfEmployeeList() {
