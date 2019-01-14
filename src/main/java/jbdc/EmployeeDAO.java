@@ -1,3 +1,5 @@
+package jbdc;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +64,57 @@ public class EmployeeDAO {
             }
         }
         return null;
+    }
+
+    public void updateJob(String job, Integer id) {
+
+        Connection connection = null;
+        try {
+            connection = Connections.getInstance().getConnection();
+            String sql = "UPDATE employee SET emp_job = ? WHERE id = ? ";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, job);
+            ps.setInt(2, id);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (connection != null && !connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+            }
+        }
+    }
+
+    public void addEmployee(Employee employee) {
+        Connection connection = null;
+        try {
+            connection = Connections.getInstance().getConnection();
+            String sql = "INSERT INTO employee (emp_name, emp_lastname, emp_job) values (1,2,3)";
+            Statement statement = connection.createStatement();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, employee.getName());
+            ps.setString(2, employee.getLastName());
+            ps.setString(3, employee.getJob());
+
+//            ps.execute();
+            statement.executeQuery("INSERT INTO employee (emp_name, emp_lastname, emp_job) values " +
+                    "(" + "Sławomir" + "," + "Dąbrowski" + " ," + "pomocnik" + " ) " );
+
+        } catch (SQLException sqlE) {
+            sqlE.getErrorCode();
+        } finally {
+            try {
+                if (connection != null && connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException sqlE) {
+                sqlE.getErrorCode();
+            }
+        }
     }
 }

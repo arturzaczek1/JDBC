@@ -1,3 +1,5 @@
+import jbdc.Employee;
+import jbdc.EmployeeDAO;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -15,6 +17,21 @@ public class EmployeeDAOTest {
     @Test
     public void testOfEmployeeById(){
         EmployeeDAO employeeDAO = new EmployeeDAO();
-        System.out.println(employeeDAO.getEmployeeById(4).toString());
+        System.out.println(employeeDAO.getEmployeeById(6).toString());
+    }
+    @Test
+    public void testOfUpdateJob(){
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        employeeDAO.updateJob("sekretarka",2);
+    }
+    @Test void testOfAddEmployee (){
+//        Employee damian = Employee.builder().name("Damian").lastName("Zieliński").job("malarz").build();
+        Employee damian= new Employee();
+        damian.setName("Damian");
+        damian.setLastName("Zeiliński");
+        damian.setJob("malarz");
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        employeeDAO.addEmployee(damian);
+        testOfEmployeeList();
     }
 }

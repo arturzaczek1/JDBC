@@ -1,3 +1,5 @@
+package jbdc;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.sql.DataSource;
@@ -7,8 +9,12 @@ import java.sql.SQLException;
 
 public class Connections {
 
-    private static DataSource datasource;
     private static Connections instance;
+
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/test";
+    private static final String USER = "root";
+    private static final String PASS = "1234";
+    private static DataSource datasource;
 
     static Connections getInstance() {
         if (instance == null) {
@@ -22,14 +28,11 @@ public class Connections {
     }
 
 
-    Connection getConnection() throws SQLException {
-        String location = "jdbc:mysql://127.0.0.1:3306/test";
-        String user = "root";
-        String pass = "1234";
-        return DriverManager.getConnection(location, user, pass);
+   protected Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(DB_URL, USER, PASS);
     }
 
-    Connection getConnection2() throws SQLException {
+   protected Connection getConnection2() throws SQLException {
         if (datasource == null) {
             String connectionString = "jdbc:mysql://127.0.0.1:3306/test";
             String username = "root";
