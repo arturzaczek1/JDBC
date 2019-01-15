@@ -5,16 +5,16 @@ import lombok.Setter;
 
 
 import javax.persistence.*;
-import java.util.Calendar;
+
 import java.util.Date;
 
 @Setter
 @Getter
-@MappedSuperclass
+@MappedSuperclass //annotation allows inheritance
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)  //annotation required in Calendar and Data types
     private Date addedDate;
 }
